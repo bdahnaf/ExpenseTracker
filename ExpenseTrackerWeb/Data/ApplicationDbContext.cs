@@ -10,5 +10,14 @@ namespace ExpenseTrackerWeb.Data
             
         }
         public DbSet<Category> Categories { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Category>().HasData(
+                new Category { Id= 1, Name = "Utilities" },
+                new Category { Id = 2, Name = "Transport" },
+                new Category { Id = 3, Name = "Foods" }
+                );
+        }
     }
 }
