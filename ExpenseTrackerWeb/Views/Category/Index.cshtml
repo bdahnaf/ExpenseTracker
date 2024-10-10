@@ -1,4 +1,51 @@
-﻿@{
-    ViewData["Title"] = "Index";
+﻿@model List<Category>
+@{
+    ViewData["Title"] = "Category List";
+    int serialNumber = 1; // For the Foreach loop count
 }
-<h1>Index of Category</h1>
+
+
+<div class="container">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">List of Category</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Category" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> Create New Category
+            </a>
+        </div>
+    </div>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Sl.
+                </th>
+                <th>
+                    Category Name
+                </th>
+                <th>
+                    Created At
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var obj in Model)
+            {
+                <tr>
+                    <td>
+                        @serialNumber
+                    </td>
+                    <td>
+                        @obj.Name
+                    </td>
+                    <td>
+                        @obj.CreatedDateTime.ToString("dd-MMM-yy hh:mm tt")
+                    </td>
+                </tr>
+                serialNumber++;
+            }
+        </tbody>
+    </table>
+</div>
