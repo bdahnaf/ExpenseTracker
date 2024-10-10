@@ -1,4 +1,5 @@
 ﻿using ExpenseTrackerWeb.Data;
+using ExpenseTrackerWeb.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExpenseTrackerWeb.Controllers
@@ -12,8 +13,8 @@ namespace ExpenseTrackerWeb.Controllers
         }
         public IActionResult Index()
         {
-            var objCategoryList = _db.Categories.ToList();
-            return View();
+            List<Category> objCategoryList = _db.Categories.ToList();
+            return View(objCategoryList);
         }
     }
 }
