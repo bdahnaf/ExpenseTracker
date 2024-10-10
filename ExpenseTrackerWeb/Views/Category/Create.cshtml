@@ -11,9 +11,11 @@
                 <hr/>
             </h2>
         </div>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="mb-3 row p-1">
             <label asp-for="Name" class="p-0"></label>
             <input asp-for="Name" type="text" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
         </div>
         <div class="row">
             <div class="col-6 col-md-3 p-1">
@@ -25,3 +27,6 @@
         </div>
     </div>
 </form>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
