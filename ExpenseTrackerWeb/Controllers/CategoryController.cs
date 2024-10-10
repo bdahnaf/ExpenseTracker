@@ -45,5 +45,42 @@ namespace ExpenseTrackerWeb.Controllers
             }
             return View();
         }
+        public IActionResult Edit(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            Category category = _db.Categories.FirstOrDefault(c => c.Id == id);
+            if(category == null)
+            {
+                return NotFound();
+            }
+            return View(category);
+        }
+        [HttpPost]
+        public IActionResult Edit(Category category)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    if (_db.Categories.Any(c => c.Name == category.Name && c.Id != category.Id))
+                    {
+                        ModelState.AddModelError("Name", "Category '" + category.Name + "' already exists!");
+                        return View(category);
+                    }
+                    _db.Categories.Update(category);
+                    _db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError(string.Empty, "An error occurred while updating the category.");
+                }
+
+            }
+            return View();
+        }
     }
 }
