@@ -35,6 +35,7 @@ namespace ExpenseTrackerWeb.Controllers
                     }
                     _db.Categories.Add(category);
                     _db.SaveChanges();
+                    TempData["success"] = "Category '" + category.Name + "' saved successfully!";
                     return RedirectToAction("Index");
                 }
                 catch (Exception ex)
@@ -72,6 +73,7 @@ namespace ExpenseTrackerWeb.Controllers
                     }
                     _db.Categories.Update(category);
                     _db.SaveChanges();
+                    TempData["success"] = "Category '" + category.Name + "' updated successfully!";
                     return RedirectToAction("Index");
                 }
                 catch (Exception ex)
@@ -105,6 +107,7 @@ namespace ExpenseTrackerWeb.Controllers
             }
             _db.Categories.Remove(category);
             _db.SaveChanges();
+            TempData["success"] = "Category '" + category.Name + "' deleted successfully!";
             return RedirectToAction("Index");
         }
     }
