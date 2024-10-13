@@ -52,7 +52,7 @@ namespace ExpenseTrackerWeb.Controllers
                 return NotFound();
             }
             Category category = _db.Categories.FirstOrDefault(c => c.Id == id);
-            if(category == null)
+            if (category == null)
             {
                 return NotFound();
             }
@@ -81,6 +81,31 @@ namespace ExpenseTrackerWeb.Controllers
 
             }
             return View();
+        }
+        public IActionResult Delete(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            Category category = _db.Categories.FirstOrDefault(c => c.Id == id);
+            if (category == null)
+            {
+                return NotFound();
+            }
+            return View(category);
+        }
+        [HttpPost, ActionName("Delete")]
+        public IActionResult DeletePOST(int? id)
+        {
+            Category? category = _db.Categories.Find(id);
+            if (category == null)
+            {
+                return NotFound();
+            }
+            _db.Categories.Remove(category);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }
