@@ -1,3 +1,5 @@
+using ExpenseTracker.DataAccess.Repository;
+using ExpenseTracker.DataAccess.Repository.IRepository;
 using ExpenseTrackerWeb.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,6 +16,7 @@ namespace ExpenseTrackerWeb
             builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
                 builder.Configuration.GetConnectionString("DefaultConnection")
             ));
+            builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
             var app = builder.Build();
 
