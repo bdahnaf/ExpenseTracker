@@ -1,7 +1,6 @@
 ﻿using ExpenseTrackerWeb.Data;
 using ExpenseTrackerWeb.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace ExpenseTrackerWeb.Controllers
 {
