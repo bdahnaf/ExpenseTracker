@@ -1,13 +1,14 @@
 ﻿using ExpenseTrackerWeb.Data;
 using ExpenseTrackerWeb.Models;
 using Microsoft.AspNetCore.Mvc;
+using ExpenseTracker.DataAccess.Repository;
 
 namespace ExpenseTrackerWeb.Controllers
 {
     public class CategoryController : Controller
     {
         private readonly ApplicationDbContext _db;
-        public CategoryController(ApplicationDbContext db)
+        public CategoryController(ICategoryRep db)
         {
             _db = db;
         }
